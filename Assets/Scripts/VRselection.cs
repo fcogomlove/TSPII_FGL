@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Selection : MonoBehaviour
+public class VRselection : MonoBehaviour
 {
     [SerializeField]
     Material inactivo;
@@ -18,7 +18,7 @@ public class Selection : MonoBehaviour
         objeto = this.gameObject;
         gazed = false;
         rendererObj = GetComponent<Renderer>();
-        inactivo = gameObject.GetComponent<Material>();
+        //inactivo = gameObject.GetComponent<Material>();
 
         SetMaterial(gazed);
     }
