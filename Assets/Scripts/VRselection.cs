@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor.Animations;
 
 public class VRselection : MonoBehaviour
 {
@@ -6,12 +7,16 @@ public class VRselection : MonoBehaviour
     Material inactivo;
     [SerializeField]
     Material activo;
+    [SerializeField]
+    public AnimatorController obj;
 
     public bool gazed;
 
     Renderer rendererObj;
 
     public GameObject objeto;
+
+
 
     void Start()
     {
