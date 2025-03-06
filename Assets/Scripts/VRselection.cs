@@ -1,43 +1,44 @@
 using UnityEngine;
-using UnityEditor.Animations;
 
 public class VRselection : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     Material inactivo;
     [SerializeField]
-    Material activo;
+    Material activo;*/
     [SerializeField]
-    public AnimatorController obj;
+    public string triggerTag;
 
     public bool gazed;
 
-    Renderer rendererObj;
+    //public GameObject objeto;
+    public Animator obj;
 
-    public GameObject objeto;
+    //Renderer rendererObj;
 
 
 
     void Start()
     {
-        objeto = this.gameObject;
+        /*objeto = this.gameObject;
         gazed = false;
         rendererObj = GetComponent<Renderer>();
-        //inactivo = gameObject.GetComponent<Material>();
+        //inactivo = gameObject.GetComponent<Material>();*/
 
-        SetMaterial(gazed);
+        //SetMaterial(gazed);
     }
 
     public void OnPointerEnter()
     {
         gazed = true;
-        SetMaterial(gazed);
+        //SetMaterial(gazed);
+        obj.SetTrigger(triggerTag);
     }
 
     public void OnPointerExit()
     {
         gazed = false;
-        SetMaterial(gazed);
+        //SetMaterial(gazed);
     }
 
     void Update()
@@ -45,11 +46,11 @@ public class VRselection : MonoBehaviour
 
     }
 
-    void SetMaterial(bool gazedAt)
+    /*void SetMaterial(bool gazedAt)
     {
         if (inactivo != null && activo != null)
         {
             rendererObj.material = gazedAt ? activo : inactivo;
         }
-    }
+    }*/
 }
