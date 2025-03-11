@@ -13,13 +13,13 @@ TextureImporter:
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
     alphaTestReferenceValue: 0.5
-    mipMapFadeDistanceStart: 1
-    mipMapFadeDistanceEnd: 3
+    mipMapFadeDistanceStart: 4
+    mipMapFadeDistanceEnd: 6
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: 0.271
-    normalMapFilter: 0
+    heightScale: 0.239
+    normalMapFilter: 1
     flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
@@ -27,7 +27,7 @@ TextureImporter:
   vTOnly: 0
   ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
-  generateCubemap: 6
+  generateCubemap: 2
   cubemapConvolution: 0
   seamlessCubemap: 1
   textureFormat: 1
@@ -37,9 +37,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 2
+    wrapV: 2
+    wrapW: 2
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
