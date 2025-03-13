@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 51145822}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -501,15 +501,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e63165ad19aff41857aa1fddf02c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotacionCubo: 100
-  moveSincrono: 0.05
-  moveThread: 0.05
-  moveTask: 0.05
-  moveCoroutine: 0.05
+  desplazamiento: 200
+  rotacionCubo: 200
+  moveSincrono: 0.1
+  moveThread: 0.1
+  moveTask: 0.1
+  moveCoroutine: 0.1
   useSincrono: 1
-  useThread: 0
-  useTask: 0
-  useCoroutine: 0
+  useThread: 1
+  useTask: 1
+  useCoroutine: 1
   sincronoSphere: {fileID: 693617421}
   threadSphere: {fileID: 1715957327}
   taskSphere: {fileID: 1911782846}

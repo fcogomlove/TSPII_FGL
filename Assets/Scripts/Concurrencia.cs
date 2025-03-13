@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 public class Concurrencia : MonoBehaviour
 {
-    [Header ("Movimiento")]
+    [Header("Movimiento")]
+    public float desplazamiento = 100;
     public float rotacionCubo = 100;
     public float moveSincrono = 0.05f;
     public float moveThread = 0.05f;
@@ -36,19 +37,30 @@ public class Concurrencia : MonoBehaviour
         if (useSincrono) MoveSincrono();
         if (useThread) MoveWithThread();
         if (useTask) MoveWithTask();
-        if (useCoroutine) MoveWithCoroutine(); //Modificar con la llamada de la rutina
+        if (useCoroutine) StartCoroutine(MoveWithCoroutine()); //Modificar con la llamada de la corutina
     }
 
     void Update()
     {
         //Siempre gira el cubo de referencia
         mainCube.Rotate(Vector3.up, rotacionCubo * Time.deltaTime);
+
+        //Ejecuta las acciones en el hilo principal
+
+        lock (mainThreadActions)
+        {
+            while (mainThreadActions.Count > 0)
+            {
+                mainThreadActions.Dequeue().Invoke();
+            }
+        }
+
     }
 
     // Metodo sincrono
     void MoveSincrono()
     {
-        for (int i = 0; i <= 50; i++)
+        for (int i = 0; i <= desplazamiento; i++)
         {
             sincronoSphere.position += Vector3.right * moveSincrono;
         }
@@ -62,7 +74,7 @@ public class Concurrencia : MonoBehaviour
     {
         new Thread(() =>
         {
-            for (int i = 0; i <= 50; i++)
+            for (int i = 0; i <= desplazamiento; i++)
             {
                 Thread.Sleep(50);
 
@@ -82,7 +94,7 @@ public class Concurrencia : MonoBehaviour
     {
         await Task.Run(() =>
         {
-            for (int i = 0; i <= 50; i++)
+            for (int i = 0; i <= desplazamiento; i++)
             {
                 Thread.Sleep(50);
 
@@ -98,8 +110,13 @@ public class Concurrencia : MonoBehaviour
     }
 
     //Metodo con corutina
-    void MoveWithCoroutine()
+    IEnumerator MoveWithCoroutine()
     {
+        for(int i = 0; i <= desplazamiento; i++)
+        {
+            coroutineSphere.position += Vector3.right * moveCoroutine;
 
+            yield return new WaitForSeconds(moveCoroutine);
+        }
     }
 }
