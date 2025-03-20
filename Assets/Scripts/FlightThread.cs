@@ -14,7 +14,7 @@ public class FlightThread : MonoBehaviour
     public Vector2 movementInput;
 
     //Control de iteraciones
-    public int turbulenceIterations = 1000000;
+    public int turbulenceIterations = 1000000; //Modificar para Actividad 2
 
     //Lista de vectores de posición calculados
     private List<Vector3> turbulenceForces = new List<Vector3>();
@@ -52,7 +52,9 @@ public class FlightThread : MonoBehaviour
             isTurbulenceRunning = true;
             stopTurbulenceThread = false;
 
-            //turbulenceThread = new Thread(() => SimulateTurbulence()).Start();
+            //Hilo Secundario
+            turbulenceThread = new Thread(() => SimulateTurbulence(capturedTime));
+            turbulenceThread.Start();
         }
 
         //Mover la nave linealmente
@@ -65,6 +67,7 @@ public class FlightThread : MonoBehaviour
 
     }
 
+    //Actividad 1
     public void SimulateTurbulence(float time)
     {
         turbulenceForces.Clear();
@@ -72,11 +75,37 @@ public class FlightThread : MonoBehaviour
         //Repeticiones
         for (int i = 0; i < turbulenceIterations; i++)
         {
+            //Verificar si se debe detener el hilo
+            if (stopTurbulenceThread)
+            {
+                break;
+            }
+
             Vector3 force = new Vector3(
                     Mathf.PerlinNoise(i * 0.001f, time) * 2 - 1,
                     Mathf.PerlinNoise(i * 0.002f, time) * 2 - 1,
                     Mathf.PerlinNoise(i * 0.003f, time) * 2 - 1
                 );
+            turbulenceForces.Add(force);
+        }
+
+        //Señal en consola de inicio del hilo
+        Debug.Log("Iniciando simulación de turbulencia");
+
+        //Simulacion completada
+        isTurbulenceRunning = false;
+    }
+
+    private void OnDestroy()
+    {
+        //Inidcamos el cierre del hilo secundario
+        stopTurbulenceThread = true;
+
+        //Verificamos si el hilo existe y se está ejecutando
+        if (turbulenceThread != null && turbulenceThread.IsAlive)
+        {
+            //Lo unimos al hilo principal y cerramos ejecucion
+            turbulenceThread.Join();
         }
     }
 }

@@ -1179,6 +1179,9 @@ GameObject:
   - component: {fileID: 3135843300967857934}
   - component: {fileID: 3135843300967857933}
   - component: {fileID: 3135843300967857932}
+  - component: {fileID: 3135843300967857936}
+  - component: {fileID: 3135843300967857937}
+  - component: {fileID: 3135843300967857938}
   m_Layer: 0
   m_Name: Example5_Grey
   m_TagString: Untagged
@@ -1231,7 +1234,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3135843300967857930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 223b35df5f2ed5c4f959f6916358d804, type: 3}
   m_Name: 
@@ -1240,7 +1243,7 @@ MonoBehaviour:
   rotationSpeed: 100
   cameraTransform: {fileID: 5812830715694596787}
   movementInput: {x: 0, y: 0}
-  turbulenceIterations: 1000000
+  turbulenceIterations: 100000
 --- !u!114 &3135843300967857933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1319,6 +1322,60 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3135843300967857936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135843300967857930}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d6926a10b967c468658671ac8d0cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  rotationSpeed: 100
+  cameraTransform: {fileID: 5812830715694596787}
+  movementInput: {x: 0, y: 0}
+  turbulenceIterations: 100000
+--- !u!114 &3135843300967857937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135843300967857930}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e719ada764d5054f8174a3d6b604747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  rotationSpeed: 100
+  cameraTransform: {fileID: 5812830715694596787}
+  movementInput: {x: 0, y: 0}
+  turbulenceIterations: 1000000
+  read: 0
+--- !u!114 &3135843300967857938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135843300967857930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d3ff5ebe22bf4782fd5bf218b46b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  rotationSpeed: 100
+  cameraTransform: {fileID: 5812830715694596787}
+  movementInput: {x: 0, y: 0}
+  turbulenceIterations: 1000000
+  read: 0
+  writen: 0
 --- !u!1001 &3135843300979216040
 PrefabInstance:
   m_ObjectHideFlags: 0
