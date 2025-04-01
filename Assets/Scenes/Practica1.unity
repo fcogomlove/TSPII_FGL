@@ -1182,6 +1182,7 @@ GameObject:
   - component: {fileID: 3135843300967857936}
   - component: {fileID: 3135843300967857937}
   - component: {fileID: 3135843300967857938}
+  - component: {fileID: 3135843300967857939}
   m_Layer: 0
   m_Name: Example5_Grey
   m_TagString: Untagged
@@ -1364,7 +1365,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3135843300967857930}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 820d3ff5ebe22bf4782fd5bf218b46b0, type: 3}
   m_Name: 
@@ -1373,9 +1374,28 @@ MonoBehaviour:
   rotationSpeed: 100
   cameraTransform: {fileID: 5812830715694596787}
   movementInput: {x: 0, y: 0}
-  turbulenceIterations: 1000000
+  turbulenceIterations: 1000
   read: 0
   writen: 0
+--- !u!114 &3135843300967857939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135843300967857930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893cc5effc73952419afb83ef645ec06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  rotationSpeed: 100
+  baseFloatSpeed: 2
+  cameraTransform: {fileID: 5812830715694596787}
+  movementInput: {x: 0, y: 0}
+  turbulenceIterations: 1000000
+  rollIntensity: 10
 --- !u!1001 &3135843300979216040
 PrefabInstance:
   m_ObjectHideFlags: 0

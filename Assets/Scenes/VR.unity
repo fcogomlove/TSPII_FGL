@@ -2745,6 +2745,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3368453801801495408, guid: f3612d501147ee041af1192e3ead4b0f, type: 3}
+      propertyPath: onFillComplete.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Practica1
+      objectReference: {fileID: 0}
     - target: {fileID: 3384674979477408260, guid: f3612d501147ee041af1192e3ead4b0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

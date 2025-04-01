@@ -27,6 +27,9 @@
 # Visual Studio cache directory
 .vs/
 
+#Vuforia
+*.tgz
+
 # Gradle cache directory
 .gradle/
 
