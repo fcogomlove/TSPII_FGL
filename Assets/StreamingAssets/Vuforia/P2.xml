@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="issste" size="1.000000 0.589610" />
+    <ImageTarget name="imss" size="1.000000 0.642857" />
+    <ImageTarget name="logo-unam" size="1.000000 0.979268" />
     <ImageTarget name="images" size="1.000000 1.000000" />
   </Tracking>
 </QCARConfig>
