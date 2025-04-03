@@ -1,0 +1,2 @@
+C:\Users\Alumnos\Documents\TSPII FGL\FGL2025-2\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\Alumnos\Documents\TSPII FGL\FGL2025-2\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
