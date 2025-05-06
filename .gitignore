@@ -27,6 +27,9 @@
 # Visual Studio cache directory
 .vs/
 
+#Firebase
+*.bundle
+
 #Vuforia
 *.tgz
 

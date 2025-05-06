@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "350667102125",
+    "firebase_url": "https://tspii-p3-default-rtdb.firebaseio.com",
+    "project_id": "tspii-p3",
+    "storage_bucket": "tspii-p3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350667102125:android:785ad5d2fee1df6c7b7324",
+        "android_client_info": {
+          "package_name": "com.frangomlove.FGL20252"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3FRc0ANt3C_mQuLUevVNlmHGviT2Gzr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
