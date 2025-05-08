@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using Firebase.Database;
@@ -54,132 +55,79 @@ public class BDYugiOh : MonoBehaviour
     public void Booleano(bool toogleB)
     {
         isMonster = toogleB;
+
+        if (isMonsterToggle)
+        {
+            spellTrapInput.gameObject.SetActive(false);
+            attackInput.gameObject.SetActive(true);
+            defenseInput.gameObject.SetActive(true);
+        }
+        else
+        {
+            spellTrapInput.gameObject.SetActive(true);
+            attackInput.gameObject.SetActive(false);
+            defenseInput.gameObject.SetActive(false);
+        }
     }
 
-    public void Registro()
+    public void RegisterCard()
     {
-        //Primer tipo de dato
-        //Generar una clave única para el registro
-        string keyNombre = reference.Child("Nombre").Push().Key;
-        //reference.Child("Nombre").Child(keyNombre).SetValueAsync(textoNombre.text);
+        cardName = cardNameInput.text;
+        isMonster = isMonsterToggle.isOn;
 
-        //Clave unica para datos individuales
-        string keyDatos = reference.Child("Datos").Push().Key;
+        if (string.IsNullOrEmpty(cardName))
+        {
+            Debug.LogError("Nombre es necesario para el registro");
+            return;
+        }
 
+        Dictionary<string, object> cardData = new Dictionary<string, object>();
+        cardData["TipoMonstruo"] = isMonster;
 
-        //Segundo tipo de dato que es un valor individual string
-        reference.Child("Datos").Child(keyDatos).Child("Texto").SetValueAsync("Registro de texto");
+        if (isMonster)
+        {
+            attack = int.Parse(attackInput.text);
+            defense = int.Parse(defenseInput.text);
 
-        //Tercer tipo de dato que es un valor int
-        //reference.Child("Datos").Child(keyDatos).Child("Edad").SetValueAsync(int.Parse(textoEdad.text));
+            cardData["ATK"] = attack;
+            cardData["DEF"] = defense;
+        }
+        else
+        {
+            spellTrap = spellTrapInput.text;
+            cardData["Tipo"] = spellTrap;
+        }
 
-        //Cuarto tipo de dato que es un bool
-        //reference.Child("Datos").Child(keyDatos).Child("Registro").SetValueAsync(registroBooleano);
-
-        //Datos a actualizar
-        Debug.Log("Dato Escuela actualizado: UNAM");
-        reference.Child("Escuela").SetValueAsync("UNAM");
-        Debug.Log("Dato Año actualizado: 2025");
-        reference.Child("Año").SetValueAsync(2025);
-
-        Debug.Log("Dato Escuela actualizado: TEC");
-        reference.Child("Escuela").SetValueAsync("TEC");
-        Debug.Log("Dato Año actualizado: 2026");
-        reference.Child("Año").SetValueAsync(2026);
-
-        //Registro de objeto tipo Usuario
-        Usuario usuarioN = new Usuario("Jacobo", "jac@gmail.com");
-
-        string json = JsonUtility.ToJson(usuarioN);
-        reference.Child("Usuario1").SetRawJsonValueAsync(json);
-
-
+        reference.Child("Cartas").Child(cardName).SetValueAsync(cardData).ContinueWithOnMainThread(task =>
+        {
+            if (task.IsCompleted)
+            {
+               Debug.Log("Carta registrada: ");
+                yugiOhCards.Start();
+            }
+            else
+            {
+                Debug.LogError("Error " + task.Exception);
+            }
+        });
     }
 
-    public void LoadFromBD()
+    public void LoadARScence()
     {
+        SceneManager.LoadScene("Practica2");
+    }
 
-        //Carga de valor individual
-        reference.Child("Año").GetValueAsync().ContinueWithOnMainThread(task =>
+    public void LoadCardData(string cardNameAR, TMP_Text textMesh)
+    {          
+        reference.Child("Cartas").Child(cardNameAR).GetValueAsync().ContinueWithOnMainThread(task =>
         {
-            if (task.IsFaulted)
+            DataSnapshot snapshot = task.Result;
+
+            if (snapshot.Exists)
             {
-                Debug.LogError("Error al obtener el valor de la base de datos: " + task.Exception);
-            }
-            else if (task.IsCompleted)
-            {
-                DataSnapshot snapshot = task.Result;
-                if (snapshot.Exists)
-                {
-                    string value = snapshot.Value.ToString();
-                    Debug.Log("Tipo de valor obtenido: " + snapshot.Value.GetType());
-                    Debug.Log(value);
-                }
-            }
-            else
-            {
-                Debug.Log("Registro no encontrado");
+                bool isMonster = bool.Parse(snapshot.Child("TipoMonstruo").Value.ToString());
             }
         });
-
-        //Carga de valores anidados
-        reference.Child("Nombre").GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted)
-            {
-                Debug.LogError("Error al obtener el valor de la base de datos: " + task.Exception);
-            }
-            else if (task.IsCompleted)
-            {
-                DataSnapshot snapshot2 = task.Result;
-                if (snapshot2.Exists)
-                {
-                    //Recorrer todos los hijos de Nombre y obtener los valores
-
-                    foreach (DataSnapshot childSnapshot in snapshot2.Children)
-                    {
-                        string value2 = childSnapshot.Value.ToString();
-                        Debug.Log("Tipo de valor obtenido: " + childSnapshot.Value.GetType());
-                        Debug.Log(value2);
-                    }
-
-                }
-            }
-            else
-            {
-                Debug.Log("Registro no encontrado");
-            }
-        });
-
-        //Carga de valores tipo JSON
-        reference.Child("Usuario1").GetValueAsync().ContinueWithOnMainThread(task =>
-        {
-            if (task.IsFaulted)
-            {
-                Debug.LogError("Error al obtener el valor de la base de datos: " + task.Exception);
-            }
-            else if (task.IsCompleted)
-            {
-                DataSnapshot snapshot3 = task.Result;
-                if (snapshot3.Exists)
-                {
-                    //Convertir el JSON a un diccionario
-
-                    Dictionary<string, object> userData = JsonConvert.DeserializeObject<Dictionary<string, object>>(snapshot3.GetRawJsonValue());
-                    Debug.Log(userData.GetType());
-                    string nombre = (string)userData["UserName"];
-                    string email = (string)userData["Email"];
-
-                    Debug.Log($"Nombre de usuario: {nombre}, Correo: {email}");
-
-                }
-            }
-            else
-            {
-                Debug.Log("Registro no encontrado");
-            }
-        });
-
     }
 
     // Update is called once per frame
