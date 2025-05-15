@@ -944,7 +944,7 @@ MonoBehaviour:
     - line: '|   hmiCpuConfiguration: '
     - line: '|   hmiLogStartupTiming: 0'
     - line: '|   qnxGraphicConfPath: '
-    - line: '|   apiCompatibilityLevel: 6'
+    - line: '|   apiCompatibilityLevel: 3'
     - line: '|   captureStartupLogs: {}'
     - line: '|   activeInputHandler: 2'
     - line: '|   windowsGamepadBackendHint: 0'

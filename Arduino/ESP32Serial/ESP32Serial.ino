@@ -44,8 +44,14 @@ void loop() {
   yValueFiltered += smoothFactor * (yMeanValue - yValueFiltered);
 
   //Mapear los valores en los ejex X y Y
-  float xValueMap = (xValueFiltered - 1935)/1935.0;
-  float yValueMap = (yValueFiltered - 1935)/1935.0;
+  float xValueMap = (xValueFiltered - 1910)/1910.0;
+  float yValueMap = (yValueFiltered - 1910)/1910.0;
+
+  if(abs(xValueMap)<0.05)
+    xValueMap = 0;
+  
+  if(abs(yValueMap)<0.05)
+    yValueMap = 0;
 
   Serial.flush();
 
@@ -55,10 +61,10 @@ void loop() {
 
   if(Serial.available() > 0){
     receivedChar = Serial.read();
-    if(receivedChar == 1){
+    if(receivedChar == '1'){
       digitalWrite(2,HIGH); //Enciende el LED
     }
-    else if(receivedChar == 0){
+    else if(receivedChar == '0'){
       digitalWrite(2,LOW); //Apaga el LED
     }
   }
